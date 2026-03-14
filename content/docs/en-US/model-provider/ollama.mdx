@@ -7,8 +7,9 @@ import { HorizontalImg } from '@/components/common/horizontal-img';
 
 This tutorial will guide you step-by-step on how to connect to a local model from [Ollama](https://ollama.com).
 
-<Callout type="warning">
-Using Ollama with Everywhere is an advanced feature. It is recommended to configure and use it only after understanding how it works. Compatibility is not guaranteed.
+<Callout type="warning" title="Notice">
+- Using Ollama with Everywhere is an advanced feature. It is recommended to configure and use it only after understanding how it works. Compatibility is not guaranteed.
+- Please use **Advanced Mode** for manual setup.
 </Callout>
 
 ## Prerequisites
@@ -38,7 +39,8 @@ ollama pull gemma3:12b
 ```
 
 - After the download is complete, enter `ollama list` in the terminal to ensure that the downloaded model is in the results.
-- In Everywhere, set **Model** to `Custom Model` and expand the tab:
+- In Everywhere's Custom Assistant, switch to **Advanced Mode**:
+  - Set **URL** to `http://127.0.0.1:11434` (Ollama's default address)
   - Set **Model ID** to `gemma3:12b` (or the name of another model you downloaded).
   
 <HorizontalImg

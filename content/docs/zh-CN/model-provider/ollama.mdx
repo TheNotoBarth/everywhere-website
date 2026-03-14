@@ -7,8 +7,9 @@ import { HorizontalImg } from '@/components/common/horizontal-img';
 
 本教程将一步步指导您如何接入 [Ollama](https://ollama.com) 的本地模型。
 
-<Callout type="warning">
-Ollama 与 Everywhere 的使用属于高级功能，建议仅在了解其工作原理后再进行配置和使用，不保证其兼容性。
+<Callout type="warning" title="须知">
+- Ollama 与 Everywhere 的使用属于高级功能，建议仅在了解其工作原理后再进行配置和使用，不保证其兼容性。
+- 请使用 **进阶模式** 手动设置。
 </Callout>
 
 ## 准备
@@ -38,8 +39,9 @@ ollama pull gemma3:12b
 ```
 
 - 下载完成后，在终端输入`ollama list`确保结果内有您下载的模型。
-- 在 Everywhere 中，将**模型**选为`Custom Model`，展开该选项卡：
-  - 将**模型ID**设置为`gemma3:12b`（或您下载的其他模型名称）
+- 在 Everywhere 的自定义助手中切换至 **进阶模式**：
+  - 将**URL**设置为`http://127.0.0.1:11434`（Ollama 的默认地址）
+  - 将**模型 ID**设置为`gemma3:12b`（或您下载的其他模型名称）
   
 <HorizontalImg
     src="/model-provider/ollama/configuration-zh.webp"
