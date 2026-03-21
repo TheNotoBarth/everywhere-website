@@ -170,9 +170,10 @@ export function Hero() {
             alt="logo"
             width={288}
             height={288}
-            className="size-32 drop-shadow-2xl sm:size-40 md:size-56 lg:size-72"
+            className="size-32 sm:size-40 md:size-56 lg:size-72"
             onLoad={() => setLogoReady(true)}
             priority
+            fetchPriority="high"
           />
         </div>
       )}
@@ -231,7 +232,7 @@ export function FeatureSection({
                 >
                   <Icon className="size-6" />
                 </div>
-                <h3 className="mb-2 text-xl font-semibold">{item.title}</h3>
+                <h1 className="mb-2 text-xl font-semibold">{item.title}</h1>
                 <p className="text-muted-foreground">{item.desc}</p>
               </div>
             </div>
@@ -268,13 +269,13 @@ export function ModelProviderSection({
         <div
           className={cn(cardVariants(), 'flex flex-col justify-center pr-12')}
         >
-          <h3
+          <h1
             className={cn(
               headingVariants({ variant: 'h3', className: 'mb-3' })
             )}
           >
             {title}
-          </h3>
+          </h1>
           <p className="text-muted-foreground text-lg">{description}</p>
           <DynamicLink
             href="/[lang]/docs/model-provider"
@@ -388,32 +389,31 @@ export function SponsorsSection({
               rel="noopener noreferrer"
               className="bg-card flex items-center justify-center rounded-xl border transition-shadow hover:shadow-md"
             >
-              <div className="relative w-[200px] h-[100px]">
+              <div className="relative h-[100px] w-[200px]">
                 {sponsor.themeDifferentiated ? (
-                <>
+                  <>
+                    <Image
+                      src={`${sponsor.iconPath}-light.svg`}
+                      alt={sponsor.title}
+                      fill
+                      className="object-contain dark:hidden"
+                    />
+                    <Image
+                      src={`${sponsor.iconPath}-dark.svg`}
+                      alt={sponsor.title}
+                      fill
+                      className="hidden object-contain dark:block"
+                    />
+                  </>
+                ) : (
                   <Image
-                    src={`${sponsor.iconPath}-light.svg`}
+                    src={`${sponsor.iconPath}.svg`}
                     alt={sponsor.title}
                     fill
-                    className="object-contain dark:hidden"
+                    className="sponsor-img auto-gray object-contain"
                   />
-                  <Image
-                    src={`${sponsor.iconPath}-dark.svg`}
-                    alt={sponsor.title}
-                    fill
-                    className="hidden object-contain dark:block"
-                  />
-                </>
-              ) : (
-                <Image
-                  src={`${sponsor.iconPath}.svg`}
-                  alt={sponsor.title}
-                  fill
-                  className="sponsor-img auto-gray object-contain"
-                />
-              )}
+                )}
               </div>
-              
             </Link>
           ))}
         </div>
@@ -425,13 +425,13 @@ export function SponsorsSection({
             'bg-muted/5 flex flex-col justify-center rounded-2xl border p-8'
           )}
         >
-          <h3
+          <h1
             className={cn(
               headingVariants({ variant: 'h3', className: 'mb-3' })
             )}
           >
             {title}
-          </h3>
+          </h1>
           <p className="text-muted-foreground text-lg">{description}</p>
         </div>
       </div>
@@ -477,9 +477,9 @@ export function BoundlessSection({
               <span className="text-brand text-sm font-semibold tracking-widest uppercase">
                 {item.label}
               </span>
-              <h3 className={cn(headingVariants({ variant: 'h3' }))}>
+              <h1 className={cn(headingVariants({ variant: 'h3' }))}>
                 {item.title}
-              </h3>
+              </h1>
               <p className="text-muted-foreground text-md leading-relaxed">
                 {item.desc}
               </p>
