@@ -20,6 +20,7 @@
     "model-provider/moonshot",
     "model-provider/openrouter",
     "model-provider/siliconcloud",
+    "model-provider/minimax",
     "model-provider/ollama",
     "---聊天插件---",
     "chat-plugin/index",

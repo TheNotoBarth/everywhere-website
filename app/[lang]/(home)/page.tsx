@@ -9,7 +9,7 @@ import {
 } from './page.client';
 import { i18n } from '@/lib/i18n';
 import { DynamicLink } from 'fumadocs-core/dynamic-link';
-import { AnthropicClaudeIcon, DeepSeekIcon, GoogleGeminiIcon, MoonshotKimiIcon, OllamaIcon, OpenAIIcon, SiliconCloudIcon } from '@/components/common/icons';
+import { AnthropicClaudeIcon, DeepSeekIcon, GoogleGeminiIcon, MoonshotKimiIcon, OllamaIcon, OpenAIIcon, SiliconCloudIcon, MiniMaxIcon } from '@/components/common/icons';
 
 const contentMap = {
   'en-US': {
@@ -227,6 +227,11 @@ export default async function Page({
       icon: SiliconCloudIcon,
       link: 'https://www.siliconflow.cn/',
       title: 'SiliconCloud',
+    },
+    {
+      icon: MiniMaxIcon,
+      link: 'https://www.minimaxi.com/',
+      title: 'MiniMax',
     },
     {
       icon: OllamaIcon,
