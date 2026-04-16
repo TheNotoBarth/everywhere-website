@@ -17,3 +17,5 @@ export const DownloadLinks = {
     aur: '',
   },
 } as const;
+
+export const AccountUrl = "https://account.sylinko.com";

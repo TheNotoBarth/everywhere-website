@@ -7,6 +7,7 @@ import {
   NavbarMenuTrigger,
 } from 'fumadocs-ui/layouts/home/navbar';
 import { Footer } from '@/components/footer';
+import { buttonVariants } from '@/components/common/variants';
 import Link from 'fumadocs-core/link';
 import Image from 'next/image';
 import Preview from '@/public/banner.webp';
@@ -20,8 +21,12 @@ import {
   Download,
   Users,
   CodeXml,
+  Gem,
+  LogIn,
 } from 'lucide-react';
+import { cn } from '@/lib/cn';
 import { getLocalePath } from '@/lib/i18n';
+import { AccountUrl } from '@/lib/constants';
 
 const docsSubNavItems = [
   { key: 'getting-started', icon: Rocket, path: '' },
@@ -39,6 +44,7 @@ const i18nText: Record<
   'en-US': {
     title: { text: 'Docs', desc: '' },
     download: { text: 'Download', desc: '' },
+    login: { text: 'Login', desc: '' },
     developer: { text: 'Developer', desc: '' },
     pricing: { text: 'Pricing', desc: '' },
     community: { text: 'Community', desc: '' },
@@ -66,6 +72,7 @@ const i18nText: Record<
   'zh-CN': {
     title: { text: '文档', desc: '' },
     download: { text: '下载', desc: '' },
+    login: { text: '登录', desc: '' },
     developer: { text: '开发者', desc: '' },
     pricing: { text: '定价', desc: '' },
     community: { text: '社区', desc: '' },
@@ -129,6 +136,7 @@ export default async function Layout({
   children: React.ReactNode;
 }) {
   const { lang } = await params;
+  const layoutOptions = baseOptions(lang);
   const texts = getTexts(lang);
   const docsUrl = getLocalePath(lang, 'docs');
   const navItems = buildNavItems(lang, docsUrl);
@@ -136,7 +144,25 @@ export default async function Layout({
   return (
     <div className="flex min-h-screen flex-col">
       <HomeLayout
-        {...baseOptions(lang)}
+        {...layoutOptions}
+        nav={{
+          ...layoutOptions.nav,
+          children: (
+            <div className="mr-3 flex flex-1 justify-end sm:hidden">
+              <Link
+                href={AccountUrl}
+                external
+                className={cn(
+                  buttonVariants({ size: 'sm' }),
+                  'gap-1.5 rounded-xl'
+                )}
+              >
+                <LogIn className="size-4" />
+                {texts.login.text}
+              </Link>
+            </div>
+          ),
+        }}
         links={[
           // Mobile navigation
           {
@@ -159,17 +185,17 @@ export default async function Layout({
           {
             type: 'main',
             on: 'menu',
+            text: texts.pricing.text,
+            url: getLocalePath(lang, 'pricing'),
+            icon: <Gem />,
+          },
+          {
+            type: 'main',
+            on: 'menu',
             text: texts.developer.text,
             url: getLocalePath(lang, 'docs/developer'),
-            icon: <CodeXml/>,
+            icon: <CodeXml />,
           },
-          // {
-          //   type: 'main',
-          //   on: 'menu',
-          //   text: texts.pricing.text,
-          //   url: getLocalePath(lang, 'pricing'),
-          //   icon: <Gem />,
-          // },
           {
             type: 'main',
             on: 'menu',
@@ -233,17 +259,17 @@ export default async function Layout({
           {
             type: 'main',
             on: 'nav',
+            text: texts.pricing.text,
+            url: getLocalePath(lang, 'pricing'),
+            icon: <Gem />,
+          },
+          {
+            type: 'main',
+            on: 'nav',
             text: texts.developer.text,
             url: getLocalePath(lang, 'docs/developer'),
-            icon: <CodeXml/>,
+            icon: <CodeXml />,
           },
-          // {
-          //   type: 'main',
-          //   on: 'nav',
-          //   text: texts.pricing.text,
-          //   url: getLocalePath(lang, 'pricing'),
-          //   icon: <Gem />,
-          // },
           {
             type: 'main',
             on: 'nav',
@@ -251,7 +277,42 @@ export default async function Layout({
             url: getLocalePath(lang, 'docs/community'),
             icon: <Users />,
           },
+          {
+            type: 'custom',
+            on: 'nav',
+            children: (
+              <Link
+                href={AccountUrl}
+                external
+                className={cn(
+                  buttonVariants({ size: 'sm' }),
+                  'ml-2 hidden min-w-24 gap-1.5 rounded-xl px-4 sm:inline-flex lg:hidden'
+                )}
+              >
+                <LogIn className="size-4" />
+                {texts.login.text}
+              </Link>
+            ),
+          },
           ...linkItems,
+          {
+            type: 'custom',
+            on: 'nav',
+            secondary: true,
+            children: (
+              <Link
+                href={AccountUrl}
+                external
+                className={cn(
+                  buttonVariants({ size: 'sm' }),
+                  'ml-3 min-w-24 gap-1.5 rounded-xl px-4'
+                )}
+              >
+                <LogIn className="size-4" />
+                {texts.login.text}
+              </Link>
+            ),
+          },
         ]}
         className="flex-1 dark:bg-neutral-950 dark:[--color-fd-background:var(--color-neutral-950)]"
       >

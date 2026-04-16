@@ -24,6 +24,11 @@
       "binding": "WORKER_SELF_REFERENCE",
       "service": "everywhere-website",
     },
+    {
+      "binding": "EVERYWHERE_AI_GATEWAY",
+      "service": "everywhere-ai-gateway-production",
+      "entrypoint": "GatewayBinding",
+    },
   ],
   "r2_buckets": [
   	{
